@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Project</title>
+</head>
+
+<body>
+<form id="AddProject" method="post" action="@Url.Action("AddProject", "AddProject")">
+    <div>
+        <h1> Add Project</h1>
+        <h2>@ViewBag.mgs</h2>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <td>
+                    <label>Name</label>
+                </td>
+                <td>
+                    <input type="text" id="ProjectName" name="ProjectName" size="80" height="20" required=""/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Code Name</label>
+                </td>
+                <td>
+                    <input type="text" id="CodeName" name="CodeName" required=""/>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+                <td>
+                    <input type="text" id="Description" name="Description" required="" size="80" height="40"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Possible Start Date </label>
+                </td>
+                <td>
+                    <input type="text" id="StartDateTime" name="StartDateTime"  required=""/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Possible End Date </label>
+                </td>
+                <td>
+                    <input type="text" id="EndDateTime" name="EndDateTime"  required=""/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Duration (in Days) </label>
+                </td>
+                <td>
+                    <input type="text" id="Duration" name="Duration" required="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Upload File </label>
+                </td>
+                <td>
+                   <input type="file" id="UploadFilePath" name="UploadFilePath" required=""/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Status</label>
+                </td>
+                <td>
+                     <input type="radio" id="Not Started" name="Status" value="Not Started" /> Not Started<br/>
+                     <input type="radio" id="Started" name="Status" value="Started"/> Started<br/>
+                     <input type="radio" id="Complited" name="Status" value="Complited"/> Complited<br/>
+                     <input type="radio" id="Canceled" name="Status" value="Canceled"/> Canceled
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Save"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</form>
+</body>
+
+</html>
