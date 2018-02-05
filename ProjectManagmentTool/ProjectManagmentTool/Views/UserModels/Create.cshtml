@@ -32,10 +32,7 @@
         </div>
 
         <div class="form-group">
-            @{
-                string ps = Model.Email;
-                Model.Password = ps + "123";
-            };
+           
             @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})

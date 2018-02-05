@@ -199,6 +199,7 @@
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddProjectController.cs" />
+    <Compile Include="Controllers\AssignResourcePersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserModelsController.cs" />
@@ -208,6 +209,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssignPerson.cs" />
     <Compile Include="Models\ConnectionClass.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -281,6 +283,7 @@
     <Content Include="Views\UserModels\Edit.cshtml" />
     <Content Include="Views\UserModels\Index.cshtml" />
     <Content Include="Views\AddProject\AddProject.cshtml" />
+    <Content Include="Views\AssignResourcePerson\AssignResoursePerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

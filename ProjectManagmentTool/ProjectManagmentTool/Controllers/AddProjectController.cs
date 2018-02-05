@@ -24,7 +24,9 @@ namespace ProjectManagmentTool.Controllers
         public ActionResult AddProject(ProjectModel aProjectModel)
         {
             AddProjectManager addProjectManager = new AddProjectManager();
-         
+           
+           
+         upload( aProjectModel.UploadFilePath);
             //var InputFileName = Path.GetFileName(File);
             //var ServerSavePath = Path.Combine(Server.MapPath("~/Files/") + InputFileName);
             int rowCount = addProjectManager.SaveProject(aProjectModel);
@@ -39,7 +41,15 @@ namespace ProjectManagmentTool.Controllers
             return View();
         }
 
-
+        public void upload(HttpPostedFileBase UploadFilePath)
+        {
+            if (UploadFilePath.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(UploadFilePath.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Files"),_FileName);
+                UploadFilePath.SaveAs(_path);
+            }
+        }
         
     }
 }

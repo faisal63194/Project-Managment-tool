@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form id="AddProject" method="post" action="@Url.Action("AddProject", "AddProject")">
+<form id="AddProject" method="post" action="@Url.Action("AddProject", "AddProject")" enctype="multipart/form-data">
     <div>
         <h1> Add Project</h1>
         <h2>@ViewBag.mgs</h2>
@@ -68,6 +68,7 @@
                 </td>
                 <td>
                    <input type="file" id="UploadFilePath" name="UploadFilePath" required=""/>
+                   
                 </td>
             </tr>
             <tr>
@@ -91,6 +92,12 @@
     </div>
 
 </form>
+
+@*@using (Html.BeginForm("upload","AddProject",FormMethod.Post,new {enctype="multipart/form-data"}))
+{
+    @Html.TextBox("UploadFilePath", "",new {type="file"})
+    <input type="submit" value="Upload"/>
+}*@
 </body>
 
 </html>

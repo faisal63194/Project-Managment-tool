@@ -31,7 +31,7 @@ namespace ProjectManagmentTool.DAL
                 cmd.Parameters.AddWithValue("StartDateTime", aProjectModel.StartDateTime);
                 cmd.Parameters.AddWithValue("EndDateTime", aProjectModel.EndDateTime);
                 cmd.Parameters.AddWithValue("Duration", aProjectModel.Duration);
-                cmd.Parameters.AddWithValue("UploadFilePath", aProjectModel.UploadFilePath);
+                cmd.Parameters.AddWithValue("UploadFilePath", aProjectModel.UploadFilePath.FileName);
                 cmd.Parameters.AddWithValue("Status", aProjectModel.Status);
                 rowCount = cmd.ExecuteNonQuery();
             }
