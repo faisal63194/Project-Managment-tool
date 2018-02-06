@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\AddProjectManager.cs" />
+    <Compile Include="BLL\AssignPersonManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddProjectController.cs" />
@@ -204,12 +205,14 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserModelsController.cs" />
     <Compile Include="DAL\AddProjectGateway.cs" />
+    <Compile Include="DAL\AssignPersonGatway.cs" />
     <Compile Include="DAL\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssignPerson.cs" />
+    <Compile Include="Models\AssignShowPerson.cs" />
     <Compile Include="Models\ConnectionClass.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

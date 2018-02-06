@@ -5,12 +5,10 @@ using System.Web;
 
 namespace ProjectManagmentTool.Models
 {
-    public class AssignPerson
+    public class AssignShowPerson
     {
-        public int Id { get; set; }
-        public int ProjectId { get; set; }
         public string ProjectName { get; set; }
-        public int UserId { get; set; }
-
+        public string Name { get; set; }
+        public string Designation { get; set; }
     }
 }

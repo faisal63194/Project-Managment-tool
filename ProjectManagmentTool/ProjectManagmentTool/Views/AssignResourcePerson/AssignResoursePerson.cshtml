@@ -3,19 +3,67 @@
     ViewBag.Title = "AssignResoursePerson";
 }
 
-<h2>AssignResoursePerson</h2>
-@using (Html.BeginForm())
+<h1>Assign Resourse Person</h1>
+@*<h2>@ViewBag.mgs</h2>*@
+@using ( Html.BeginForm("AssignResoursePerson", "AssignResourcePerson",FormMethod.Post))
 {
-    <table class="table">
-        
+    <table class="table body-content">
         <tr>
             <td>
                 <label>Select Project</label>
             </td>
             <td>
-                <select id="SelectProject"></select>
+                <select id="SelectProject" name="SelectProject" class="form-control body-content">
+                    <option>---Select---</option>
+                    @foreach (var project in ViewBag.listOfProject)
+                    {
+                        <option value="@project.ProjectId">@project.ProjectName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Select Resource Person</label>
+            </td>
+            <td>
+               
+                <select id="SelectUser" name="SelectUser" class="form-control dropdown"> 
+                    <option>---Select---</option>
+                    @foreach (var user in ViewBag.listofUsesr)
+                    {
+                        <option value="@user.UserId">@user.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2">
+                <input type="submit" value="Save" class="body-content btn"/>
             </td>
         </tr>
     </table>
+    <div>
+        <table id="ResourcePersonTBody" class="table tab-content table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Resource Person</th>
+                <th>Designation</th>
+            </tr>
+            </thead>
+            @foreach (var data in ViewBag.listOfShowAssignPerson)
+            {
+                <tr>
+                    <td>@data.ProjectName</td>
+                    <td>@data.Name</td>
+                    <td>@data.Designation</td>
+                </tr>
+            }
+        </table>
+        
+    </div>
 }
 
