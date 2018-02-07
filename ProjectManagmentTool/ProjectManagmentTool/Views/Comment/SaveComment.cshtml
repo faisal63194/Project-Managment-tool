@@ -1,0 +1,113 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SaveComment</title>
+    <h2>Save Comment</h2>
+
+</head>
+
+<body>
+<div class="container" id="padding">
+    <div class="row ">
+        <div class="col-lg-offset-3 col-lg-6 well" id="boxShadow">
+
+            <form method="POST" class="form-horizontal" id="saveComment">
+                <fieldset>
+
+                    <legend class="text-center">Add Comment </legend>
+
+                    <div class="form-group">
+                        @if (ViewBag.mgs != null)
+                        {
+                            <h3 style="color: green">@ViewBag.mgs</h3>
+                        }
+                        @if (ViewBag.error != null)
+                        {
+                            <h3 style="color: red">@ViewBag.error</h3>
+                        }
+
+                        <label for="ProjectId" class="col-sm-3 control-label">Select Project :</label>
+                        <div class="col-sm-9">
+                            <select id="ProjectId" name="ProjectId" class="form-control">
+                                <option value="">---Select---</option>
+                                @foreach (var project in ViewBag.listOfProject)
+                                {
+                                    <option value="@project.ProjectId">@project.ProjectName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TaskId" class="col-sm-3 control-label">Select Task :</label>
+                        <div class="col-sm-9">
+                            <select id="TaskId" name="TaskId" class="form-control">
+                                <option value="">---Select---</option>
+                                @foreach (var task in ViewBag.listOfTask)
+                                    {
+                                        <option value="@task.TaskId">@task.Description</option>
+                                    }
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="Comment">Description :</label>
+                        <div class="col-sm-9">
+                            <textarea id="Comment" name="Comment" placeholder="Enter Comment Here.." rows="3" class="form-control"></textarea>
+                        </div>
+
+                    </div>
+
+                       
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-2">
+                            <button type="submit" class="btn btn-success btn-block" name="btn">Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
+    
+@section scripts{
+
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+            
+        $(document).ready(function () {
+           
+            $("#saveComment").validate({
+                rules: {
+                    ProjectId: "required",
+                    TaskId: "required",
+                    Comment: "required"
+                   
+                },
+                messages: {
+                    ProjectId: "Please Select Project Name .",
+                    TaskId: "Please Select Name .",
+                    Comment: "Please provide description"
+                   
+                }
+            });
+
+        });
+    </script>
+
+
+}
+
+</body>
+
+</html>
+

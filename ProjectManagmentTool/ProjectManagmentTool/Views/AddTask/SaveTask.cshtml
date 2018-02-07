@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SaveTask</title>
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container" id="padding">
+        <div class="row ">
+            <div class="col-lg-offset-3 col-lg-6 well" id="boxShadow">
+
+                <form method="POST" class="form-horizontal" id="saveTask">
+                    <fieldset>
+
+                        <legend class="text-center">Add New Task </legend>
+
+                        <div class="form-group">
+                            @if (ViewBag.mgs != null)
+                            {
+                                <h3 style="color: green">@ViewBag.mgs</h3>
+                            }
+                            @if (ViewBag.error != null)
+                            {
+                                <h3 style="color: red">@ViewBag.error</h3>
+                            }
+
+                            <label for="ProjectId" class="col-sm-3 control-label">Select Project :</label>
+                            <div class="col-sm-9">
+                                <select id="ProjectId" name="ProjectId" class="form-control">
+                                    <option value="">---Select---</option>
+                                    @foreach (var project in ViewBag.listOfProject)
+                                    {
+                                        <option value="@project.ProjectId">@project.ProjectName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="UserId" class="col-sm-3 control-label">Assign To :</label>
+                            <div class="col-sm-9">
+                                <select id="UserId" name="UserId" class="form-control">
+                                    <option value="">---Select---</option>
+                                    @foreach (var user in ViewBag.listOfUser)
+                                    {
+                                        <option value="@user.UserId">@user.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="Description">Description :</label>
+                            <div class="col-sm-9">
+                                <textarea id="Description" name="Description" placeholder="Enter Description Here.." rows="3" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="DueDate">Due Date :</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="DueDate" name="DueDate" class="form-control" placeholder="Due Date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PriorityId" class="col-sm-3 control-label">Priority :</label>
+                            <div class="col-sm-9">
+                                <select id="PriorityId" name="PriorityId" class="form-control">
+                                    <option value="">---Select---</option>
+                                    @foreach (var priority in ViewBag.listOfPriority)
+                                    {
+                                        <option value="@priority.PriorityId">@priority.Priority</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-2">
+                                <button type="submit" class="btn btn-success btn-block" name="btn">Save</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+                $("#DueDate").datepicker({
+                    showAnim: "bounce"
+                });
+                $("#saveTask").validate({
+                    rules: {
+                        ProjectId: "required",
+                        UserId: "required",
+                        Description: "required",
+                        DueDate: "required",
+                        PriorityId: "required",
+                    },
+                    messages: {
+                        ProjectId: "Please Select Project Name .",
+                        UserId: "Please Select Name .",
+                        Description: "Please provide description",
+                        DueDate: "Please Provide Date .",
+                        PriorityId: "Please Select Priority ."
+                    }
+                });
+
+            });
+        </script>
+
+
+    }
+</body>
+
+</html>
+
+
+
