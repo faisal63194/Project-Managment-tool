@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Involve Person</title>
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <style>
+        table tr:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container" id="padding">
+    <div class="row ">
+        <div class="" id="boxShadow">
+
+            <form method="POST" class="form-horizontal" id="involvePerson">
+                <fieldset>
+
+                    <legend class="text-center">View All Project in which you are involved </legend>
+                    <table class="table  table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Name </th>
+                            <th>Short Name</th>
+                            <th>Status</th>
+                            <th>No Of Member</th>
+                            <th>No Of Task</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                           
+                        @foreach (var data in ViewBag.listOfInvolvePerson)
+                        {
+                            <tr>
+                                <td>@data.ProjectName</td>
+                                <td>@data.CodeName</td>
+                                <td>@data.Status</td>
+                                <td>@data.NoOfMember</td>
+                                <td>@data.NoOfTask</td>
+                                    
+                            </tr>
+                        }
+                        </tbody>
+
+
+                    </table>
+                        
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

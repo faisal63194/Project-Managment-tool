@@ -24,20 +24,24 @@ namespace ProjectManagmentTool.Controllers
         public ActionResult AddProject(ProjectModel aProjectModel)
         {
             AddProjectManager addProjectManager = new AddProjectManager();
-           
-           
-         upload( aProjectModel.UploadFilePath);
-            //var InputFileName = Path.GetFileName(File);
-            //var ServerSavePath = Path.Combine(Server.MapPath("~/Files/") + InputFileName);
-            int rowCount = addProjectManager.SaveProject(aProjectModel);
-            if (rowCount > 0)
+            if(addProjectManager.IsExistProject(aProjectModel.ProjectName).Rows.Count>0)
             {
-                ViewBag.mgs = "Add project has been saved successfully.";
+                ViewBag.mg = "Project is already Exist .";
             }
             else
             {
-                ViewBag.mgs = "Not saved";
+                int rowCount = addProjectManager.SaveProject(aProjectModel);
+                if (rowCount > 0)
+                {
+                    upload(aProjectModel.UploadFilePath);
+                    ViewBag.mgs = "Add project has been saved successfully.";
+                }
+                else
+                {
+                    ViewBag.mgs = "Not saved";
+                }
             }
+            
             return View();
         }
 

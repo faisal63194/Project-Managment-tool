@@ -45,5 +45,18 @@ namespace ProjectManagmentTool.DAL
             }
             return rowCount;
         }
+
+        public DataTable IsExistProject(string ProjectName)
+        {
+            dt=new DataTable();
+            string sql = "Select * from AddProject_tb where ProjectName=@ProjectName";
+            cmd=new SqlCommand(sql,oConnectionClass.GetConnection());
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("ProjectName", ProjectName);
+            SqlDataAdapter da=new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            oConnectionClass.GetColse();
+            return dt;
+        }
     }
 }

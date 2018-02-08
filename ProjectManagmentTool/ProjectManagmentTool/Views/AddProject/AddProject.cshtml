@@ -6,10 +6,20 @@
 </head>
 
 <body>
+
+
 <form id="AddProject" method="post" action="@Url.Action("AddProject", "AddProject")" enctype="multipart/form-data">
     <div>
         <h1> Add Project</h1>
-        <h2>@ViewBag.mgs</h2>
+        @if (ViewBag.mg != null)
+        {
+            <h2 style="color: red">@ViewBag.mg</h2>
+        }
+        @if (ViewBag.mgs != null)
+        {
+            <h2 style="color: green">@ViewBag.mgs</h2>
+        }
+        
     </div>
     <div>
         <table class="table">
@@ -27,7 +37,7 @@
                 </td>
                 <td>
                     <input type="text" id="CodeName" name="CodeName" required=""/>
-                   
+
                 </td>
             </tr>
             <tr>
@@ -43,7 +53,7 @@
                     <label>Possible Start Date </label>
                 </td>
                 <td>
-                    <input type="text" id="StartDateTime" name="StartDateTime"  required=""/>
+                    <input type="text" id="StartDateTime" name="StartDateTime" required=""/>
                 </td>
             </tr>
             <tr>
@@ -51,7 +61,7 @@
                     <label>Possible End Date </label>
                 </td>
                 <td>
-                    <input type="text" id="EndDateTime" name="EndDateTime"  required=""/>
+                    <input type="text" id="EndDateTime" name="EndDateTime" required=""/>
                 </td>
             </tr>
             <tr>
@@ -59,7 +69,7 @@
                     <label>Duration (in Days) </label>
                 </td>
                 <td>
-                    <input type="text" id="Duration" name="Duration" required="" />
+                    <input type="text" id="Duration" name="Duration" required=""/>
                 </td>
             </tr>
             <tr>
@@ -67,8 +77,8 @@
                     <label>Upload File </label>
                 </td>
                 <td>
-                   <input type="file" id="UploadFilePath" name="UploadFilePath" required=""/>
-                   
+                    <input type="file" id="UploadFilePath" name="UploadFilePath" required=""/>
+
                 </td>
             </tr>
             <tr>
@@ -76,10 +86,10 @@
                     <label>Status</label>
                 </td>
                 <td>
-                     <input type="radio" id="Not Started" name="Status" value="Not Started" /> Not Started<br/>
-                     <input type="radio" id="Started" name="Status" value="Started"/> Started<br/>
-                     <input type="radio" id="Complited" name="Status" value="Complited"/> Complited<br/>
-                     <input type="radio" id="Canceled" name="Status" value="Canceled"/> Canceled
+                    <input type="radio" id="Not Started" name="Status" value="Not Started"/> Not Started<br/>
+                    <input type="radio" id="Started" name="Status" value="Started"/> Started<br/>
+                    <input type="radio" id="Complited" name="Status" value="Complited"/> Complited<br/>
+                    <input type="radio" id="Canceled" name="Status" value="Canceled"/> Canceled
                 </td>
             </tr>
             <tr>
