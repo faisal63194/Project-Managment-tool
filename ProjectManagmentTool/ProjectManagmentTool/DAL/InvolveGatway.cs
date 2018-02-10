@@ -18,7 +18,7 @@ namespace ProjectManagmentTool.DAL
         {
             dt=new DataTable();
             string sql =
-                "select ProjectName,CodeName,Status,NoofTask,Noofmember from TaskAndAddProject JOIN noofmember on noofmember.ProjectId=TaskAndAddProject.ProjectId";
+                "select noofmember.ProjectId,ProjectName,CodeName,Status,NoofTask,Noofmember from TaskAndAddProject JOIN noofmember on noofmember.ProjectId=TaskAndAddProject.ProjectId";
             da=new SqlDataAdapter(sql,oConnectionClass.GetConnection());
             da.Fill(dt);
             oConnectionClass.GetColse();

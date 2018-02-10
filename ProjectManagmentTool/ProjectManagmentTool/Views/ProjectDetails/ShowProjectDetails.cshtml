@@ -1,0 +1,202 @@
+﻿@using Microsoft.Ajax.Utilities
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ShowProjectDetails</title>
+    <h2>Show Project Details</h2>
+</head>
+
+<body>
+    @{
+        
+        foreach (var data in ViewBag.showProjectInfo)
+        {
+            var ProjectNa = data.ProjectName;
+        }
+    }
+   
+<div class="container" id="padding">
+    <div class="row ">
+        <div class="col-lg-6">
+            <div class="col-lg-offset-3 well">
+
+                <form method="POST" class="form-horizontal" id="showProjectDtails">
+                   
+                    <div class="form-group">
+
+
+                        <label for="Name" class="col-sm-3 control-label">Name</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" id="Name" readonly="readonly" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Code" class="col-sm-3 control-label">Code</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Code" name="Code" readonly="readonly" class="form-control"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="Description">Description</label>
+                        <div class="col-sm-9">
+                            <textarea id="Description" name="Description" rows="3" class="form-control" readonly="readonly"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="Status">Status</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Status" name="Status" class="form-control" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="StartDate" class="col-sm-3 control-label">Start Date</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="StartDate" name="StartDate" readonly="readonly" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EndDate" class="col-sm-3 control-label">End Date</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="EndDate" name="EndDate" readonly="readonly" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Duration" class="col-sm-3 control-label">Duration</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="Duration" name="Duration" readonly="readonly" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="UploadPath" class="col-sm-3 control-label">Upload Files</label>
+                        <div class="col-sm-9">
+                            <textarea id="UploadPath" name="UploadPath" rows="3" class="form-control" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Member" class="col-sm-3 control-label">Assign member</label>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <table class="table table-bordered table-striped" id="Member">
+                                    <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Designation</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var data in ViewBag.listOfUser)
+                                    {
+                                        <tr>
+
+                                            <td>@data.Name</td>
+                                            <td>@data.Designation</td>
+
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+
+            <div class="col-lg-offset-3 col-lg-12 well" id="boxShadow">
+
+                <form method="POST" class="form-horizontal" id="Show">
+
+
+                    <fieldset>
+
+                        
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <legend class="text-left">Task List(Total :@ViewBag.result)</legend> 
+                            </div>
+                            <div class="col-lg-6">
+                                <legend class="text-right"><a href="http://localhost:54993/AddTask/SaveTask">Create Task</a></legend>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>Assign to</td>
+                                    <td>Proirity</td>
+                                    <td>Dua Date</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    @foreach (var data in ViewBag.allTaskList)
+                                    {
+                                    <tr>
+                                        <td>@data.Description</td>
+                                        <td>@data.Name</td>
+                                        <td>@data.Priority</td>
+                                        <td>@data.DueDate</td>
+                                    </tr>
+                                        }
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+           
+            var PrId = '@Request.QueryString["ProjectId"]';
+               
+                var json = {projectId:PrId };
+                $.ajax({
+                    type: "POST",
+                    @*url: '@Url.Action("ProjectDetails","GetInfo")',*@
+                    url: '/ProjectDetails/GetInfo',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $.each(data, function (key, value) {
+                            //alert(value.StudentId);
+                            $("#Name").append(value.ProjectName);
+                            $("#Code").append(value.CodeName);
+                           
+                        });
+                    }
+                });
+           
+
+        });
+    </script>
+}
+</body>
+
+</html>
+

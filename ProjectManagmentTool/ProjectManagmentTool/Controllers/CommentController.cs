@@ -42,7 +42,7 @@ namespace ProjectManagmentTool.Controllers
             List<ProjectModel> projeectList = new List<ProjectModel>();
             if (assignPersonManager.GetAllProject().Rows.Count > 0)
             {
-                for (int i = 0; i <= assignPersonManager.GetAllPerson().Rows.Count; i++)
+                for (int i = 0; i < assignPersonManager.GetAllProject().Rows.Count; i++)
                 {
                     ProjectModel projectModel = new ProjectModel();
                     projectModel.ProjectName = assignPersonManager.GetAllProject().Rows[i]["ProjectName"].ToString();

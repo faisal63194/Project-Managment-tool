@@ -22,6 +22,7 @@ namespace ProjectManagmentTool.Controllers
                 for (int i=0; i <path.Rows.Count; i++)
                 {
                     InvolveModel involve = new InvolveModel();
+                    involve.ProjectId = (int) path.Rows[i]["ProjectId"];
                     involve.ProjectName = path.Rows[i]["ProjectName"].ToString();
                     involve.CodeName = path.Rows[i]["CodeName"].ToString();
                     involve.Status = path.Rows[i]["Status"].ToString();

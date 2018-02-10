@@ -21,9 +21,11 @@
                 <fieldset>
 
                     <legend class="text-center">View All Project in which you are involved </legend>
-                    <table class="table  table-bordered">
+                   
+                    <table class="table  table-bordered" id="myTable">
                         <thead>
                         <tr>
+                            <th style="visibility: hidden">ProjectId</th>
                             <th>Name </th>
                             <th>Short Name</th>
                             <th>Status</th>
@@ -36,12 +38,13 @@
                         @foreach (var data in ViewBag.listOfInvolvePerson)
                         {
                             <tr>
+                                <td style="visibility: hidden">@data.ProjectId</td>
                                 <td>@data.ProjectName</td>
                                 <td>@data.CodeName</td>
                                 <td>@data.Status</td>
                                 <td>@data.NoOfMember</td>
                                 <td>@data.NoOfTask</td>
-                                    
+
                             </tr>
                         }
                         </tbody>
@@ -55,5 +58,39 @@
         </div>
     </div>
 </div>
+    
+    @section scripts{
+
+        <script src="~/Scripts/jquery-1.12.4.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                var table = document.getElementById("myTable"), rIndex;
+
+                for (var i = 0; i < table.rows.length; i++) {
+                    table.rows[i].onclick = function () {
+                        rIndex = this.rowIndex;
+
+                        var proid = this.cells[0].innerHTML;
+                        //alert(proid);
+                        window.location.href = "http://localhost:54993/ProjectDetails/ShowProjectDetails?ProjectId=" + proid;
+                        
+                    };
+                }
+                $('table tbody tr').click(function () {
+
+                    
+                    //var x = document.getElementById("myTable").rows[0].cells;
+                    //var myvar = ($(this.cells[0].innerHTML));
+                    //console.log(myvar);
+                    //alert(myvar);
+                    //'<%Session["temp"] = "' + myvar + '"; %>'
+                   
+                    
+                   
+                });
+            });
+        </script>
+    }
 </body>
 </html>

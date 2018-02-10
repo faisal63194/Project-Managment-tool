@@ -199,6 +199,7 @@
     <Compile Include="BLL\AssignPersonManager.cs" />
     <Compile Include="BLL\CommentManager.cs" />
     <Compile Include="BLL\InvolveManager.cs" />
+    <Compile Include="BLL\ShowProjectManager.cs" />
     <Compile Include="BLL\TaskManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -209,11 +210,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvolvePersonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectDetailsController.cs" />
     <Compile Include="Controllers\UserModelsController.cs" />
     <Compile Include="DAL\AddProjectGateway.cs" />
     <Compile Include="DAL\AssignPersonGatway.cs" />
     <Compile Include="DAL\CommentGatway.cs" />
     <Compile Include="DAL\InvolveGatway.cs" />
+    <Compile Include="DAL\ShowProjectGatway.cs" />
     <Compile Include="DAL\TaskGatway.cs" />
     <Compile Include="DAL\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,6 +233,7 @@
     <Compile Include="Models\PriorityModel.cs" />
     <Compile Include="Models\ProjectManagmentDbContext.cs" />
     <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\ShowTaskModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +351,7 @@
     <Content Include="Views\AddTask\SaveTask.cshtml" />
     <Content Include="Views\Comment\SaveComment.cshtml" />
     <Content Include="Views\InvolvePerson\Index.cshtml" />
+    <Content Include="Views\ProjectDetails\ShowProjectDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
