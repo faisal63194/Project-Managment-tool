@@ -222,6 +222,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801230647039_InitialCreate.cs" />
+    <Compile Include="Migrations\201801230647039_InitialCreate.Designer.cs">
+      <DependentUpon>201801230647039_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802101430136_addeeddd.cs" />
+    <Compile Include="Migrations\201802101430136_addeeddd.Designer.cs">
+      <DependentUpon>201802101430136_addeeddd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AssignPerson.cs" />
     <Compile Include="Models\AssignShowPerson.cs" />
@@ -283,10 +292,12 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="DatabaseScripts.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ProjectManagmentDatabaseDiagram.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -363,6 +374,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801230647039_InitialCreate.resx">
+      <DependentUpon>201801230647039_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802101430136_addeeddd.resx">
+      <DependentUpon>201802101430136_addeeddd.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

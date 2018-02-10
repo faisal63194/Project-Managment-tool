@@ -64,7 +64,7 @@
                 }
 
                 @Html.ListBox("Designation", listbox)
-              @*  @Html.EditorFor(model => model.Designation, new {htmlAttributes = new {@class = "form-control"}})*@
+                @*  @Html.EditorFor(model => model.Designation, new {htmlAttributes = new {@class = "form-control"}})*@
                 @Html.ValidationMessageFor(model => model.Designation, "", new {@class = "text-danger"})
             </div>
         </div>
@@ -75,6 +75,8 @@
             </div>
         </div>
     </div>
+   
+   
 }
 
 <div>
