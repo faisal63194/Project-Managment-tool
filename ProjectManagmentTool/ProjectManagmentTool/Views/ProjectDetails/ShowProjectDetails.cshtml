@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <title>ShowProjectDetails</title>
     <h2>Show Project Details</h2>
+    <style>
+        #taskTable tr:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    @{
-        
-        foreach (var data in ViewBag.showProjectInfo)
-        {
-            var ProjectNa = data.ProjectName;
-        }
-    }
+    
    
 <div class="container" id="padding">
     <div class="row ">
@@ -26,10 +26,10 @@
                     <div class="form-group">
 
 
-                        <label for="Name" class="col-sm-3 control-label">Name</label>
+                        <label for="PName" class="col-sm-3 control-label">Name</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="Name" id="Name" readonly="readonly" class="form-control" />
+                            <input type="text" name="PName" id="PName" readonly="readonly" class="form-control" />
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@
                         
                         
                         <div class="form-group">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered" id="taskTable">
                                 <thead>
                                 <tr>
                                     <td>Description</td>
@@ -170,23 +170,33 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+
+            
 
            
             var PrId = '@Request.QueryString["ProjectId"]';
                
-                var json = {projectId:PrId };
+                var json = {ProjectId:PrId };
                 $.ajax({
                     type: "POST",
-                    @*url: '@Url.Action("ProjectDetails","GetInfo")',*@
-                    url: '/ProjectDetails/GetInfo',
+                    url: '@Url.Action("GetInfo", "ProjectDetails")',
+                    //url: '/ProjectDetails/GetInfo',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
                     success: function (data) {
+                       
                         $.each(data, function (key, value) {
-                            //alert(value.StudentId);
-                            $("#Name").append(value.ProjectName);
-                            $("#Code").append(value.CodeName);
+                            
+                            $("#PName").val(value.ProjectName);
+                            $("#Code").val(value.CodeName);
+                            $("#Description").val(value.Description);
+                            $("#Status").val(value.Status);
+                            $("#StartDate").val(value.StartDateTime);
+                            $("#EndDate").val(value.EndDateTime);
+                            $("#Duration").val(value.Duration);
+                            $("#UploadPath").val(value.UFile);
+
                            
                         });
                     }

@@ -15,26 +15,7 @@ namespace ProjectManagmentTool.Controllers
         public ActionResult ShowProjectDetails(int ProjectId)
         {
             ShowProjectManager showProjectManager = new ShowProjectManager();
-            List<ProjectModel> showList = new List<ProjectModel>();
-            var path = showProjectManager.GetAllProjectDeatils(ProjectId).Rows;
-            if (path.Count > 0)
-            {
-                for (int i = 0; i < path.Count; i++)
-                {
-                    ProjectModel projectModel = new ProjectModel();
-                    projectModel.ProjectName = path[i]["ProjectName"].ToString();
-                    projectModel.CodeName = path[i]["CodeName"].ToString();
-                    projectModel.Description = path[i]["Description"].ToString();
-                    projectModel.Duration = (int)path[i]["Duration"];
-                    projectModel.StartDateTime = path[i]["StartDateTime"].ToString();
-                    projectModel.EndDateTime = path[i]["EndDateTime"].ToString();
-                    projectModel.Status = path[i]["Status"].ToString();
-                    showList.Add(projectModel);
-
-                }
-                ViewBag.showProjectInfo = showList;
-
-            }
+           
 
             List<ShowTaskModel>showTaskList=new List<ShowTaskModel>();
             var path1 = showProjectManager.GetAllTaskInfo().Rows;
@@ -74,11 +55,11 @@ namespace ProjectManagmentTool.Controllers
             }
             return userList;
         }
-        public JsonResult GetInfo(int projectId)
+        public JsonResult GetInfo(int ProjectId)
         {
             ShowProjectManager showProjectManager = new ShowProjectManager();
             List<ProjectModel> showList = new List<ProjectModel>();
-            var path = showProjectManager.GetAllProjectDeatils(projectId).Rows;
+            var path = showProjectManager.GetAllProjectDeatils(ProjectId).Rows;
             if (path.Count > 0)
             {
                 for (int i = 0; i < path.Count; i++)
@@ -91,6 +72,7 @@ namespace ProjectManagmentTool.Controllers
                     projectModel.StartDateTime = path[i]["StartDateTime"].ToString();
                     projectModel.EndDateTime = path[i]["EndDateTime"].ToString();
                     projectModel.Status = path[i]["Status"].ToString();
+                    projectModel.UFile = path[i]["UploadFilePath"].ToString();
                     showList.Add(projectModel);
 
                 }

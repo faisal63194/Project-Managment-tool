@@ -15,7 +15,7 @@ namespace ProjectManagmentTool.Models
         public string EndDateTime { get; set; }
         public int Duration { get; set; }
         public HttpPostedFileBase UploadFilePath { get; set; }
-        //public string UploadFilePath { get; set; }
+        public string UFile { get; set; }
         public string Status { get; set; }
     }
 }
