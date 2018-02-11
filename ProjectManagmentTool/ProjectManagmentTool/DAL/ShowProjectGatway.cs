@@ -39,6 +39,29 @@ namespace ProjectManagmentTool.DAL
             return dt;
         }
 
-        
+        public DataTable GetAllPerson(int projectId)
+        {
+            dt = new DataTable();
+            string sql = "Select * from AssignPersonView where ProjectId=@ProjectId";
+            try
+            {
+                cmd = new SqlCommand(sql, oConnectionClass.GetConnection());
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("ProjectId", projectId);
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                oConnectionClass.GetColse();
+            }
+            return dt;
+        }
+
+
     }
 }

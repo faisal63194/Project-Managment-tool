@@ -23,5 +23,11 @@ namespace ProjectManagmentTool.BLL
             return showProjectGatway.GetAllTaskInfo();
         }
 
+        public DataTable GetAllPerson(int projectId)
+        {
+            showProjectGatway = new ShowProjectGatway();
+            return showProjectGatway.GetAllPerson(projectId);
+        }
+
     }
 }

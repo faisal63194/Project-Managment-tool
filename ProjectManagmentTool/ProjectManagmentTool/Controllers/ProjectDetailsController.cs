@@ -35,21 +35,21 @@ namespace ProjectManagmentTool.Controllers
                 }
                 ViewBag.allTaskList = showTaskList;
             }
-            ViewBag.listOfUser = GetUser();
+            ViewBag.listOfUser = GetUser(ProjectId);
             return View();
         }
 
-        public List<UserModel> GetUser()
+        public List<UserModel> GetUser(int projectId)
         {
-            AssignPersonManager assignPersonManager = new AssignPersonManager();
+            ShowProjectManager assignPersonManager = new ShowProjectManager();
             List<UserModel> userList = new List<UserModel>();
-            if (assignPersonManager.GetAllPerson().Rows.Count > 0)
+            if (assignPersonManager.GetAllPerson(projectId).Rows.Count > 0)
             {
-                for (int i = 0; i < assignPersonManager.GetAllPerson().Rows.Count; i++)
+                for (int i = 0; i < assignPersonManager.GetAllPerson(projectId).Rows.Count; i++)
                 {
                     UserModel userModel = new UserModel();
-                    userModel.Name = assignPersonManager.GetAllPerson().Rows[i]["Name"].ToString();
-                    userModel.Designation = assignPersonManager.GetAllPerson().Rows[i]["Designation"].ToString();
+                    userModel.Name = assignPersonManager.GetAllPerson(projectId).Rows[i]["Name"].ToString();
+                    userModel.Designation = assignPersonManager.GetAllPerson(projectId).Rows[i]["Designation"].ToString();
                     userList.Add(userModel);
                 }
 

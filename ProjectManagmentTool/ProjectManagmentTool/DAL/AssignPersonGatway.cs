@@ -22,7 +22,8 @@ namespace ProjectManagmentTool.DAL
             string sql = "Select * from UserModels";
             try
             {
-                da = new SqlDataAdapter(sql, oConnectionClass.GetConnection());
+                
+                da = new SqlDataAdapter(sql,oConnectionClass.GetConnection());
                 da.Fill(dt);
             }
             catch (Exception e)
