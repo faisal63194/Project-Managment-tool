@@ -11,5 +11,6 @@ namespace ProjectManagmentTool.Models
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
         public string Comment { get; set; }
+        public string DateTime { get; set; }
     }
 }

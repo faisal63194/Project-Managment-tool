@@ -21,5 +21,15 @@ namespace ProjectManagmentTool.BLL
         {
             return commentGatway.SaveComment(comment);
         }
+
+        public DataTable GetProjectInfo(int projectId)
+        {
+            return commentGatway.GetProjectInfo(projectId);
+        }
+
+        public DataTable GetCommetInfo(int projectId)
+        {
+            return commentGatway.GetCommetInfo(projectId);
+        }
     }
 }

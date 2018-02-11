@@ -20,6 +20,7 @@ namespace ProjectManagmentTool.Controllers
         [HttpPost]
         public ActionResult SaveComment(CommentModel commentModel)
         {
+            commentModel.DateTime=DateTime.Now.ToString("yyyy MMMM dd" +" "+ "h:mm:ss tt zz");
             CommentManager commentManager=new CommentManager();
             int rowCount = commentManager.SaveComment(commentModel);
             if(rowCount>0)

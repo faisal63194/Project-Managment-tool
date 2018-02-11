@@ -26,6 +26,10 @@ namespace ProjectManagmentTool.BLL
         public int SaveAssignPerson(AssignPerson assignPerson)
         {
             assignPersonGatway = new AssignPersonGatway();
+            if(assignPersonGatway.IsExistUserName(assignPerson.ProjectId,assignPerson.UserId).Rows.Count>0)
+            {
+                return 0;
+            }
             return assignPersonGatway.SaveAssignPerson(assignPerson);
         }
 
@@ -33,6 +37,12 @@ namespace ProjectManagmentTool.BLL
         {
             assignPersonGatway = new AssignPersonGatway();
             return assignPersonGatway.GetAllAssignInfo();
+        }
+
+        public DataTable IsExistUserName(int projectId, int userId)
+        {
+            assignPersonGatway = new AssignPersonGatway();
+            return assignPersonGatway.IsExistUserName(projectId, userId);
         }
     }
 }

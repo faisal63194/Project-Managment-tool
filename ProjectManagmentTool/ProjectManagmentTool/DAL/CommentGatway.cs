@@ -31,14 +31,42 @@ namespace ProjectManagmentTool.DAL
         public int SaveComment(CommentModel comment)
         {
             int rowCount = 0;
-            string sql = "Insert into Comment_tb(ProjectId,TaskId,Comment)Values(@ProjectId,@TaskId,@Comment)";
+            string sql = "Insert into Comment_tb(ProjectId,TaskId,Comment,DateTime)Values(@ProjectId,@TaskId,@Comment,@DateTime)";
             cmd=new SqlCommand(sql,oConnectionClass.GetConnection());
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("ProjectId", comment.ProjectId);
             cmd.Parameters.AddWithValue("TaskId", comment.TaskId);
             cmd.Parameters.AddWithValue("Comment", comment.Comment);
+            cmd.Parameters.AddWithValue("DateTime", comment.DateTime);
             rowCount = cmd.ExecuteNonQuery();
             return rowCount;
         }
+
+        public DataTable GetProjectInfo(int projectId)
+        {
+            dt = new DataTable();
+            string sql = "Select * from ViewComment where ProjectId=@ProjectId";
+            cmd = new SqlCommand(sql, oConnectionClass.GetConnection());
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("ProjectId", projectId);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            oConnectionClass.GetColse();
+            return dt;
+        }
+
+        public DataTable GetCommetInfo(int projectId)
+        {
+            dt = new DataTable();
+            string sql = "Select * from Comment_tb where ProjectId=@ProjectId";
+            cmd = new SqlCommand(sql, oConnectionClass.GetConnection());
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("ProjectId", projectId);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            oConnectionClass.GetColse();
+            return dt;
+        }
+
     }
 }

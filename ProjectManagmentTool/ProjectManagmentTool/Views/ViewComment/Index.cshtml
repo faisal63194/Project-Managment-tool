@@ -1,7 +1,116 @@
 ﻿
-@{
-    ViewBag.Title = "Index";
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
 
-<h2>Index</h2>
+<body>
+    <div class="container" id="padding">
+        <div class="row ">
+            <div class="col-lg-offset-3 col-lg-6 well" id="boxShadow">
+
+                <form method="POST" class="form-horizontal" id="saveTask">
+                    <fieldset>
+
+                        <legend class="text-center">View Comment Of Task </legend>
+                        
+                            <div class="form-group">
+                                <label for="PName" class="col-sm-3 control-label">Project Name</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" name="PName" id="PName" readonly="readonly" class="form-control" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+
+
+                                <label for="Description" class="col-sm-3 control-label">Task</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" name="Description" id="Description" readonly="readonly" class="form-control" />
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <legend class="text-left">Comment (Total : @ViewBag.result)
+                                </legend>
+                            </div>
+                            <div class="col-lg-6">
+                                <legend class="text-right"><a href="http://localhost:54993/Comment/SaveComment">New Comment</a></legend>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <table class="table table-bordered" id="taskTable">
+                                <thead>
+                                <tr>
+                                   
+                                    <td>Comment</td>
+                                    <td>Date Time</td>
+            
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.listOfComment != null)
+                                    {
+                                        foreach (var data in ViewBag.listOfComment)
+                                        {
+                                            <tr>
+
+                                                <td>@data.Comment</td>
+                                                <td>@data.DateTime</td>
+
+                                            </tr>
+                                        }
+                                    }
+                             
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+    
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    
+@section scripts
+    {
+        <script>
+            $(document).ready(function() {
+                
+                var PrId = '@Request.QueryString["ProjectId"]';
+
+                var json = { ProjectId: PrId };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetProjectInfo", "ViewComment")',
+                    //url: '/ProjectDetails/GetInfo',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+
+                        $.each(data,
+                            function (key, value) {
+
+                                $("#PName").val(value.ProjectName);
+                                $("#Description").val(value.Description);
+
+
+                            });
+                    }
+                });
+
+            })
+
+        </script>
+    }
+</body>
+
+</html>
 

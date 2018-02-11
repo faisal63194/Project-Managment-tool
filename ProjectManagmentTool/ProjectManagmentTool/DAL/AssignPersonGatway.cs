@@ -88,5 +88,19 @@ namespace ProjectManagmentTool.DAL
             }
             return dt;
         }
+
+        public DataTable IsExistUserName(int projectId, int userId)
+        {
+            dt = new DataTable();
+            string sql = "Select * from AssignPerson_tb where ProjectId=@ProjectId AND UserId=@UserId";
+            cmd=new SqlCommand(sql,oConnectionClass.GetConnection());
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("ProjectId", projectId);
+            cmd.Parameters.AddWithValue("UserId", userId);
+            da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            oConnectionClass.GetColse();
+            return dt;
+        }
     }
 } 

@@ -136,22 +136,26 @@
                             <table class="table table-bordered" id="taskTable">
                                 <thead>
                                 <tr>
+                                   
                                     <td>Description</td>
                                     <td>Assign to</td>
                                     <td>Proirity</td>
                                     <td>Dua Date</td>
+                                    <td style="visibility: hidden">ProjectId</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 
                                     @foreach (var data in ViewBag.allTaskList)
                                     {
-                                    <tr>
-                                        <td>@data.Description</td>
-                                        <td>@data.Name</td>
-                                        <td>@data.Priority</td>
-                                        <td>@data.DueDate</td>
-                                    </tr>
+                                        <tr>
+                                            
+                                            <td>@data.Description</td>
+                                            <td>@data.Name</td>
+                                            <td>@data.Priority</td>
+                                            <td>@data.DueDate</td>
+                                            <td style="visibility: hidden">@data.ProjectId</td>
+                                        </tr>
                                         }
                                    
                                 </tbody>
@@ -170,24 +174,36 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
-            
 
-           
+            var table = document.getElementById("taskTable"), rIndex;
+
+            for (var i = 0; i < table.rows.length; i++) {
+                table.rows[i].onclick = function() {
+                    rIndex = this.rowIndex;
+
+                    var proid = this.cells[4].innerHTML;
+                    //alert(proid);
+                    window.location.href = "http://localhost:54993/viewComment/index?ProjectId=" + proid;
+
+                };
+            }
+
             var PrId = '@Request.QueryString["ProjectId"]';
-               
-                var json = {ProjectId:PrId };
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("GetInfo", "ProjectDetails")',
-                    //url: '/ProjectDetails/GetInfo',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(json),
-                    success: function (data) {
-                       
-                        $.each(data, function (key, value) {
-                            
+
+            var json = { ProjectId: PrId };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetInfo", "ProjectDetails")',
+                //url: '/ProjectDetails/GetInfo',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function(data) {
+
+                    $.each(data,
+                        function(key, value) {
+
                             $("#PName").val(value.ProjectName);
                             $("#Code").val(value.CodeName);
                             $("#Description").val(value.Description);
@@ -197,11 +213,11 @@
                             $("#Duration").val(value.Duration);
                             $("#UploadPath").val(value.UFile);
 
-                           
+
                         });
-                    }
-                });
-           
+                }
+            });
+
 
         });
     </script>

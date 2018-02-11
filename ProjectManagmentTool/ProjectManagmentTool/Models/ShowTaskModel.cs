@@ -7,6 +7,7 @@ namespace ProjectManagmentTool.Models
 {
     public class ShowTaskModel
     {
+        public int ProjectId { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
         public string Designation { get; set; }

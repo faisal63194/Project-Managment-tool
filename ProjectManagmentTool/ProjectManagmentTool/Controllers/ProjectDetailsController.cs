@@ -25,6 +25,7 @@ namespace ProjectManagmentTool.Controllers
                 for (int i = 0; i < path1.Count; i++)
                 {
                     ShowTaskModel showTask=new ShowTaskModel();
+                    showTask.ProjectId = (int) path1[i]["ProjectId"];
                     showTask.Description = path1[i]["Description"].ToString();
                     showTask.Designation = path1[i]["Designation"].ToString();
                     showTask.Name = path1[i]["Name"].ToString();

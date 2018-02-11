@@ -35,17 +35,18 @@ namespace ProjectManagmentTool.Controllers
                 {
                     ViewBag.mgs = "Person Assign has been successfully .";
                 }
+                else
+                {
+                    ViewBag.mg = "User already assign this Project .";
+                }
             }
             catch (Exception e)
             {
-                ViewBag.mgs = e.Message;
+                ViewBag.mg = e.Message;
             }
             ViewBag.listofUsesr = GetUser();
             ViewBag.listOfProject = GetProject();
             ViewBag.listOfShowAssignPerson = ShowAssignPerson();
-
-
-
 
 
 

@@ -33,7 +33,7 @@ namespace ProjectManagmentTool.DAL
         {
             dt=new DataTable();
             string sql =
-                "Select a.Description,u.Name,u.Designation,p.Priority,t.DueDate from Task_tb As t inner join AddProject_tb as a on a.ProjectId=t.ProjectId inner join UserModels as u on u.UserId=t.UserId inner join Priority_tb as p on p.PriorityId=t.Priority";
+                "Select a.ProjectId,a.Description,u.Name,u.Designation,p.Priority,t.DueDate from Task_tb As t inner join AddProject_tb as a on a.ProjectId=t.ProjectId inner join UserModels as u on u.UserId=t.UserId inner join Priority_tb as p on p.PriorityId=t.Priority";
             da = new SqlDataAdapter(sql,oConnectionClass.GetConnection());
             da.Fill(dt);
             return dt;
