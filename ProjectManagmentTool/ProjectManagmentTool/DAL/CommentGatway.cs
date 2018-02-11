@@ -15,11 +15,14 @@ namespace ProjectManagmentTool.DAL
         private SqlDataAdapter da;
         ConnectionClass oConnectionClass=new ConnectionClass();
 
-        public DataTable GetAllTask()
+        public DataTable GetAllTask(int projectId)
         {
             dt = new DataTable();
-            string sql = "Select TaskId,Description from Task_tb";
-            da = new SqlDataAdapter(sql, oConnectionClass.GetConnection());
+            string sql = "Select TaskId,Description from Task_tb where ProjectId=@ProjectId";
+            cmd=new SqlCommand(sql,oConnectionClass.GetConnection());
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("ProjectId", projectId);
+            da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             oConnectionClass.GetColse();
             return dt;

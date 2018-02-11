@@ -46,10 +46,10 @@
                         <div class="col-sm-9">
                             <select id="TaskId" name="TaskId" class="form-control">
                                 <option value="">---Select---</option>
-                                @foreach (var task in ViewBag.listOfTask)
+                                @*@foreach (var task in ViewBag.listOfTask)
                                     {
                                         <option value="@task.TaskId">@task.Description</option>
-                                    }
+                                    }*@
                             </select>
                         </div>
                     </div>
@@ -83,21 +83,44 @@
     <script src="~/Scripts/jquery-ui-1.12.0.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script>
-            
+
         $(document).ready(function () {
-           
+
+            $("#ProjectId").change(function () {
+                var projId = $("#ProjectId").val();
+                $("#TaskId").empty();
+                $("#TaskId").append('<option value="">--Select--</option>');
+                //$("#studentName").val('');
+                var json = { ProjectId: projId };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllTask", "Comment")',
+                    //url: '/Department/GetStudentsByDepartmentId',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //alert(data);
+                        $.each(data, function (key, value) {
+                            //alert(value.StudentId);
+                            $("#TaskId").append('<option value=' + value.TaskId + '>' + value.Description + '</option>');
+                            
+                        });
+                    }
+                });
+            });
+
             $("#saveComment").validate({
                 rules: {
                     ProjectId: "required",
                     TaskId: "required",
                     Comment: "required"
-                   
+
                 },
                 messages: {
                     ProjectId: "Please Select Project Name .",
                     TaskId: "Please Select Name .",
                     Comment: "Please provide description"
-                   
+
                 }
             });
 

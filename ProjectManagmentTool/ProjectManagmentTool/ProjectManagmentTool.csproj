@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectDetailsController.cs" />
     <Compile Include="Controllers\UserModelsController.cs" />
+    <Compile Include="Controllers\ViewCommentController.cs" />
     <Compile Include="DAL\AddProjectGateway.cs" />
     <Compile Include="DAL\AssignPersonGatway.cs" />
     <Compile Include="DAL\CommentGatway.cs" />
@@ -363,6 +364,7 @@
     <Content Include="Views\Comment\SaveComment.cshtml" />
     <Content Include="Views\InvolvePerson\Index.cshtml" />
     <Content Include="Views\ProjectDetails\ShowProjectDetails.cshtml" />
+    <Content Include="Views\ViewComment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

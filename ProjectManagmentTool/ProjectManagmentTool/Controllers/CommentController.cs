@@ -14,7 +14,7 @@ namespace ProjectManagmentTool.Controllers
         public ActionResult SaveComment()
         {
             ViewBag.listOfProject = GetProject();
-            ViewBag.listOfTask = GetAllTask();
+            //ViewBag.listOfTask = GetAllTask();
             return View();
         }
         [HttpPost]
@@ -31,7 +31,7 @@ namespace ProjectManagmentTool.Controllers
                 ViewBag.error = "Not Saved .";
             }
             ViewBag.listOfProject = GetProject();
-            ViewBag.listOfTask = GetAllTask();
+            //ViewBag.listOfTask = GetAllTask();
             return View();
         }
 
@@ -55,22 +55,22 @@ namespace ProjectManagmentTool.Controllers
 
         }
 
-        public List<TaskModel> GetAllTask()
+        public JsonResult GetAllTask(int ProjectId)
         {
             CommentManager commentManager=new CommentManager();
             List<TaskModel> taskList = new List<TaskModel>();
-            if (commentManager.GetAllTask().Rows.Count > 0)
+            if (commentManager.GetAllTask(ProjectId).Rows.Count > 0)
             {
-                for (int i = 0; i < commentManager.GetAllTask().Rows.Count; i++)
+                for (int i = 0; i < commentManager.GetAllTask(ProjectId).Rows.Count; i++)
                 {
                     TaskModel taskModel = new TaskModel();
-                    taskModel.Description = commentManager.GetAllTask().Rows[i]["Description"].ToString();
+                    taskModel.Description = commentManager.GetAllTask(ProjectId).Rows[i]["Description"].ToString();
                     taskModel.TaskId =
-                        Convert.ToInt32(commentManager.GetAllTask().Rows[i]["TaskId"].ToString());
+                        Convert.ToInt32(commentManager.GetAllTask(ProjectId).Rows[i]["TaskId"].ToString());
                     taskList.Add(taskModel);
                 }
             }
-            return taskList;
+            return Json(taskList) ;
         }
     }
 }

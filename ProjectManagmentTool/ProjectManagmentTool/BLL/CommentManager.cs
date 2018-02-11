@@ -12,9 +12,9 @@ namespace ProjectManagmentTool.BLL
     {
         CommentGatway commentGatway=new CommentGatway();
 
-        public DataTable GetAllTask()
+        public DataTable GetAllTask(int projectId)
         {
-            return commentGatway.GetAllTask();
+            return commentGatway.GetAllTask(projectId);
         }
 
         public int SaveComment(CommentModel comment)
